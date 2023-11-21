@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SUKESH Cricket Academy Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        #password {
+            width: calc(100% - 38px);
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .confirmation {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .confirmation h2 {
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        .confirmation p {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .default-image {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .password-strength {
+            text-align: left;
+            margin-top: 5px;
+            color: #333;
+        }
+
+        .weak {
+            color: #ff6347;
+        }
+
+        .good {
+            color: #ffd700;
+        }
+
+        .strong {
+            color: #008000;
+        }
+    </style>
+</head>
+<body>
+
+<form id="cricketRegistrationForm" onsubmit="submitForm(event)">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRtxGSuL0oKPBSn8qUISgk_-H9rbKzd_NALQ&usqp=CAU" alt="Cricket Registration" class="default-image">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="john_doe123" required>
+
+    <div class="password-container">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="********" required>
+        <span class="password-toggle" onclick="togglePasswordVisibility()">👁️</span>
+        <div class="password-strength" id="password-strength"></div>
+    </div>
+
+    <label for="battingStyle">Batting Style:</label>
+    <select id="battingStyle" name="battingStyle" required>
+        <option value="" disabled selected>Select Batting Style</option>
+        <option value="rightHanded">Right-Handed</option>
+        <option value="leftHanded">Left-Handed</option>
+    </select>
+
+    <label for="bowlingStyle">Bowling Style:</label>
+    <select id="bowlingStyle" name="bowlingStyle" required>
+        <option value="" disabled selected>Select Bowling Style</option>
+        <option value="pace">Pace</option>
+        <option value="spin">Spin</option>
+    </select>
+
+    <label for="playingPosition">Preferred Playing Position:</label>
+    <input type="text" id="playingPosition" name="playingPosition" placeholder="e.g., Opening batsman" required>
+
+    <button type="submit">Register</button>
+</form>
+
+<div id="confirmation" class="confirmation">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZP5E1A9-xDVXt-2rejNbvaq3Ya2VUK2NGFYadIlHix6VfPtGO7TLjg2l1fRXvVtJ7dco&usqp=CAU" alt="Cricket Registration Confirmation" class="default-image">
+    <h2>Registration Successful!</h2>
+    <p>Thank you for registering with our Cricket Academy. We look forward to seeing you on the field!</p>
+</div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+
+        // Perform validation here if needed
+
+        // Simulate form submission
+        document.getElementById('cricketRegistrationForm').style.display = 'none';
+        document.getElementById('confirmation').style.display = 'block';
+    }
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.querySelector('.password-toggle');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordToggle.textContent = '👁️';
+        } else {
+            passwordInput.type = 'password';
+            passwordToggle.textContent = '👁️';
+        }
+    }
+
+    document.getElementById('password').addEventListener('input', function () {
+        const password = this.value;
+        const strengthIndicator = document.getElementById('password-strength');
+
+        // Perform password strength check (you can customize this logic)
+        const weakRegex = /^(?=.*[a-z])|(?=.*[A-Z])|(?=.*\d)|(?=.*[@$!%*?&])|(?=.{8,})/;
+        const goodRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])|(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&])|(?=.*\d)(?=.*[a-z])(?=.*[@$!%*?&])|(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])|(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+
+        if (strongRegex.test(password)) {
+            strengthIndicator.innerHTML = '<span class="strong">Strong!</span>';
+        } else if (goodRegex.test(password)) {
+            strengthIndicator.innerHTML = '<span class="good">Good</span>';
+        } else {
+            strengthIndicator.innerHTML = '<span class="weak">Weak</span>';
+        }
+    });
+</script>
+
+</body>
+</html>
